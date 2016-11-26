@@ -1,0 +1,211 @@
+.flex-outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.flex-inner-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.flex-just-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-dir-col {
+  flex-direction: column;
+}
+.flex-col-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.bg-90 {
+  background-color: #004D40;
+}
+.bg-80 {
+  background-color: #00695C;
+}
+.bg-70 {
+  background-color: #00796B;
+}
+.bg-60 {
+  background-color: #00897B;
+}
+.bg-400 {
+  background-color: #1DE9B6;
+}
+body {
+  margin: 0;
+  font-family: "CormorantInfant-Med", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+.hide {
+  display: none;
+}
+.hidden {
+  visibility: hidden;
+}
+.w-100p {
+  width: 100%;
+}
+.w-350px {
+  width: 350px;
+}
+.h-100p {
+  height: 100%;
+}
+.p-abs {
+  position: absolute;
+}
+.p-fx {
+  position: fixed;
+}
+.p-rel {
+  position: relative;
+}
+.text-center {
+  text-align: center;
+}
+.forms-names {
+  background-color: #00695C;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+}
+.forms-names button,
+.forms-names label {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}
+.forms-names button {
+  margin: 0 10px;
+  cursor: pointer;
+  background-color: unset;
+  border-style: none;
+  letter-spacing: 2px;
+}
+.forms-names button:focus {
+  outline: none;
+}
+.forms-names button:hover {
+  color: #A7FFEB;
+}
+.forms-names button.selected {
+  font-weight: bold;
+  color: #A7FFEB;
+  text-decoration: underline;
+}
+form {
+  width: 350px;
+  background-color: #00796B;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border-radius: 0 0 5px 5px;
+}
+form > div {
+  margin: 5px 0;
+}
+form .select-lang {
+  color: #FFFFFF;
+}
+form .select-lang > label {
+  margin-right: 10px;
+}
+form .select-lang select {
+  font-family: inherit;
+}
+form input {
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+  padding: 5px 5px 5px 35px;
+  font-size: 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+form input:focus {
+  outline: #A7FFEB auto 5px;
+}
+form input:focus + label.icon,
+form input:hover + label.icon {
+  opacity: 1;
+}
+form label.icon {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  top: 6px;
+  opacity: 0.5;
+}
+form label.icon.name {
+  background: url(./svg/ic_person.svg);
+}
+form label.icon.password {
+  background: url(./svg/ic_lock_outline.svg);
+}
+form label.icon.confirm-password {
+  background: url(./svg/ic_lock_open.svg);
+}
+form button.submit {
+  width: 100%;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 18px;
+  background-color: #00BFA5;
+  cursor: pointer;
+  padding: 5px;
+  font-weight: bold;
+  border: none;
+}
+form button.submit:focus {
+  outline: #FFFFFF auto 5px;
+}
+form button.submit:hover {
+  background-color: #4DB6AC;
+}
+@font-face {
+  font-family: "CormorantInfant-Reg";
+  src: url(./97cc885821aadcbc063f57f514192d01.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "CormorantInfant-Med";
+  src: url(./eeb94ce10f8f86aabc93f995e5755933.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "CormorantInfant-Ital";
+  src: url(./50c817a022d3696525fbedb45db9eac1.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MarckScript";
+  src: url(./8213f9f79159ce265b433a91528304b7.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-family-CormorantInfant-Reg {
+  font-family: "CormorantInfant-Reg", Helvetica, Arial, sans-serif;
+}
+.font-family-CormorantInfant-Med {
+  font-family: "CormorantInfant-Med", Helvetica, Arial, sans-serif;
+}
+.font-family-CormorantInfant-Ital {
+  font-family: "CormorantInfant-Ital", Helvetica, Arial, sans-serif;
+}
+.font-family-MarckScript {
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}

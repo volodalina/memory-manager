@@ -1,0 +1,99 @@
+.forms-names {
+  .bg-80;
+  .flex-just-center;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+  button, label {
+    color: @white;
+    font-size: 24px;
+    .font-family-MarckScript;
+  }
+  button {
+    margin: 0 10px;
+    //reset default props
+    cursor: pointer;
+    background-color: unset;
+    border-style: none;
+    letter-spacing: 2px;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: @100;
+    }
+    &.selected {
+      font-weight: bold;
+      color: @100;
+      text-decoration: underline;
+    }
+  }
+}
+
+form {
+  .w-350px;
+  .bg-70;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border-radius: 0 0 5px 5px;
+  & > div {
+    margin: 5px 0;
+  }
+  .select-lang {
+    color: @white;
+    & > label {
+      margin-right: 10px;
+    }
+    select {
+      font-family: inherit;
+    }
+  }
+  input {
+    .font-family-MarckScript;
+    padding: 5px 5px 5px 35px;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    &:focus {
+      outline: @100 auto 5px;
+    }
+    &:focus + label.icon, &:hover + label.icon {
+      opacity: 1;
+    }
+  }
+  label.icon {
+    .p-abs;
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
+    top: 6px;
+    opacity: 0.5;
+    &.name {
+      background: url("../icons/ic_person.svg");
+    }
+    &.password {
+      background: url("../icons/ic_lock_outline.svg");
+    }
+    &.confirm-password {
+      background: url("../icons/ic_lock_open.svg");
+    }
+  }
+  button.submit {
+    width: 100%;
+    color: @white;
+    font-family: inherit;
+    font-size: 18px;
+    background-color: @700;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+    &:focus {
+      outline: @white auto 5px;
+    }
+    &:hover {
+      background-color: @30;
+    }
+  }
+}
