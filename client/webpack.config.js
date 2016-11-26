@@ -1,5 +1,7 @@
 const path = require('path'),
   webpack = require('webpack'),
+  json_package = require('../package.json'),
+  gitRevSync = require('git-rev-sync'),
   NODE_ENV = require('./js/constants').NODE_ENV,
   isProduction = process.env.NODE_ENV === NODE_ENV.PRODUCTION,
   HtmlWebpackPlugin = require('html-webpack-plugin'),
@@ -50,6 +52,9 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
+      'GIT_BRANCH': gitRevSync.branch(),
+      'GIT_LONG': gitRevSync.long(),
+      'VERSION': json_package.version,
       template: path.join(__dirname, 'ejs/index.ejs'),
       inject: 'body'
     }),
