@@ -147,15 +147,6 @@ form label.icon {
   top: 6px;
   opacity: 0.5;
 }
-form label.icon.name {
-  background: url(./svg/ic_person.svg);
-}
-form label.icon.password {
-  background: url(./svg/ic_lock_outline.svg);
-}
-form label.icon.confirm-password {
-  background: url(./svg/ic_lock_open.svg);
-}
 form button.submit {
   width: 100%;
   color: #FFFFFF;

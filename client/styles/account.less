@@ -20,11 +20,11 @@
       outline: none;
     }
     &:hover {
-      color: @100;
+      color: @A100;
     }
     &.selected {
       font-weight: bold;
-      color: @100;
+      color: @A100;
       text-decoration: underline;
     }
   }
@@ -55,7 +55,7 @@ form {
     width: 100%;
     box-sizing: border-box;
     &:focus {
-      outline: @100 auto 5px;
+      outline: @A100 auto 5px;
     }
     &:focus + label.icon, &:hover + label.icon {
       opacity: 1;
@@ -69,22 +69,13 @@ form {
     margin-left: 5px;
     top: 6px;
     opacity: 0.5;
-    &.name {
-      background: url("../icons/ic_person.svg");
-    }
-    &.password {
-      background: url("../icons/ic_lock_outline.svg");
-    }
-    &.confirm-password {
-      background: url("../icons/ic_lock_open.svg");
-    }
   }
   button.submit {
     width: 100%;
     color: @white;
     font-family: inherit;
     font-size: 18px;
-    background-color: @700;
+    background-color: @A700;
     cursor: pointer;
     padding: 5px;
     font-weight: bold;
@@ -93,7 +84,7 @@ form {
       outline: @white auto 5px;
     }
     &:hover {
-      background-color: @30;
+      background-color: @300;
     }
   }
 }

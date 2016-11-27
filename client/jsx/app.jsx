@@ -6,13 +6,4 @@ class App extends React.Component {
   }
 }
 
-
 export default App;
-/*
-import React from ‘react’;
-
-const HelloWorld = (props, context) => (
-  <div>{`Hi ${name}`}</div>
-);
-
-export default HelloWorld;*/

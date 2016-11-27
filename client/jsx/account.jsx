@@ -4,13 +4,14 @@ import {FormattedMessage, injectIntl} from 'react-intl'
 
 import {MODE, LANG} from '../js/constants'
 import {keys} from '../js/nls/en/common'
+import LockOpenIcon from './svg/lock_open'
+import LockOutlineIcon from './svg/lock_outline'
+import PersonIcon from './svg/person'
 
 import  {
   openRegisterForm, openLoginForm,
   inputUsername, inputUserPassword, inputConfirmPassword, changeLanguage
 } from "../js/actions/account_actions"
-
-
 
 const Account = (props) => {
   const {formatMessage} = props.intl;
@@ -35,28 +36,34 @@ const Account = (props) => {
           </label>
           <select value={props.lang} onChange={props.onChangeLanguage}>
             <option value={LANG.EN}>
-              {formatMessage({ id: keys.$EN})}
+              {formatMessage({id: keys.$EN})}
             </option>
             <option value={LANG.RU}>
-              {formatMessage({ id: keys.$RU})}
+              {formatMessage({id: keys.$RU})}
             </option>
           </select>
         </div>
         <div className="w-100p p-rel">
-          <input type="text" value={props.user_name} placeholder={formatMessage({ id: keys.$USER_NAME})}
+          <input type="text" value={props.user_name} placeholder={formatMessage({id: keys.$USER_NAME})}
                  onChange={props.onChangeUsername}/>
-          <label className="icon name"></label>
+          <label className="icon">
+            <PersonIcon/>
+          </label>
         </div>
         <div className="w-100p p-rel">
-          <input type="password" value={props.password} placeholder={formatMessage({ id: keys.$USER_PASSWORD})}
+          <input type="password" value={props.password} placeholder={formatMessage({id: keys.$USER_PASSWORD})}
                  onChange={props.onChangePassword}/>
-          <label className="icon password"></label>
+          <label className="icon">
+            <LockOutlineIcon/>
+          </label>
         </div>
         {props.mode === MODE.REGISTER ?
           <div className="w-100p p-rel">
             <input type="password" value={props.confirm_password}
-                   placeholder={formatMessage({ id: keys.$PASSWORD_CONFIRM})} onChange={props.onChangeConfirmPassword}/>
-            <label className="icon confirm-password"></label>
+                   placeholder={formatMessage({id: keys.$PASSWORD_CONFIRM})} onChange={props.onChangeConfirmPassword}/>
+            <label className="icon">
+              <LockOpenIcon/>
+            </label>
           </div> : null}
         {props.mode === MODE.LOGIN ?
           <div className="w-100p text-center">

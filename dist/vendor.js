@@ -102,7 +102,7 @@
 	__webpack_require__(38);
 	__webpack_require__(189);
 	__webpack_require__(245);
-	module.exports = __webpack_require__(298);
+	module.exports = __webpack_require__(295);
 
 
 /***/ },
@@ -28844,10 +28844,7 @@
 /* 292 */,
 /* 293 */,
 /* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {/*
@@ -28862,13 +28859,13 @@
 
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-	var allLocaleData = _interopDefault(__webpack_require__(299));
-	var IntlMessageFormat = _interopDefault(__webpack_require__(300));
-	var IntlRelativeFormat = _interopDefault(__webpack_require__(310));
+	var allLocaleData = _interopDefault(__webpack_require__(296));
+	var IntlMessageFormat = _interopDefault(__webpack_require__(297));
+	var IntlRelativeFormat = _interopDefault(__webpack_require__(307));
 	var React = __webpack_require__(7);
 	var React__default = _interopDefault(React);
-	var invariant = _interopDefault(__webpack_require__(317));
-	var memoizeIntlConstructor = _interopDefault(__webpack_require__(318));
+	var invariant = _interopDefault(__webpack_require__(314));
+	var memoizeIntlConstructor = _interopDefault(__webpack_require__(315));
 
 	// GENERATED FILE
 	var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
@@ -30778,24 +30775,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(9)))
 
 /***/ },
-/* 299 */
+/* 296 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 300 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jshint node:true */
 
 	'use strict';
 
-	var IntlMessageFormat = __webpack_require__(301)['default'];
+	var IntlMessageFormat = __webpack_require__(298)['default'];
 
 	// Add all locale data to `IntlMessageFormat`. This module will be ignored when
 	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(309);
+	__webpack_require__(306);
 
 	// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
 	// locale data registered, and with English set as the default locale. Define
@@ -30805,13 +30802,13 @@
 
 
 /***/ },
-/* 301 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$core$$ = __webpack_require__(302), src$en$$ = __webpack_require__(308);
+	var src$core$$ = __webpack_require__(299), src$en$$ = __webpack_require__(305);
 
 	src$core$$["default"].__addLocaleData(src$en$$["default"]);
 	src$core$$["default"].defaultLocale = 'en';
@@ -30821,7 +30818,7 @@
 	//# sourceMappingURL=main.js.map
 
 /***/ },
-/* 302 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -30833,7 +30830,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$utils$$ = __webpack_require__(303), src$es5$$ = __webpack_require__(304), src$compiler$$ = __webpack_require__(305), intl$messageformat$parser$$ = __webpack_require__(306);
+	var src$utils$$ = __webpack_require__(300), src$es5$$ = __webpack_require__(301), src$compiler$$ = __webpack_require__(302), intl$messageformat$parser$$ = __webpack_require__(303);
 	exports["default"] = MessageFormat;
 
 	// -- MessageFormat --------------------------------------------------------
@@ -31090,7 +31087,7 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ },
-/* 303 */
+/* 300 */
 /***/ function(module, exports) {
 
 	/*
@@ -31127,7 +31124,7 @@
 	//# sourceMappingURL=utils.js.map
 
 /***/ },
-/* 304 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -31139,7 +31136,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$utils$$ = __webpack_require__(303);
+	var src$utils$$ = __webpack_require__(300);
 
 	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
 	// Copyright 2013 Andy Earnshaw, MIT License
@@ -31181,7 +31178,7 @@
 	//# sourceMappingURL=es5.js.map
 
 /***/ },
-/* 305 */
+/* 302 */
 /***/ function(module, exports) {
 
 	/*
@@ -31395,17 +31392,17 @@
 	//# sourceMappingURL=compiler.js.map
 
 /***/ },
-/* 306 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports = module.exports = __webpack_require__(307)['default'];
+	exports = module.exports = __webpack_require__(304)['default'];
 	exports['default'] = exports;
 
 
 /***/ },
-/* 307 */
+/* 304 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -32769,7 +32766,7 @@
 	//# sourceMappingURL=parser.js.map
 
 /***/ },
-/* 308 */
+/* 305 */
 /***/ function(module, exports) {
 
 	// GENERATED FILE
@@ -32779,24 +32776,24 @@
 	//# sourceMappingURL=en.js.map
 
 /***/ },
-/* 309 */
+/* 306 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 310 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jshint node:true */
 
 	'use strict';
 
-	var IntlRelativeFormat = __webpack_require__(311)['default'];
+	var IntlRelativeFormat = __webpack_require__(308)['default'];
 
 	// Add all locale data to `IntlRelativeFormat`. This module will be ignored when
 	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(316);
+	__webpack_require__(313);
 
 	// Re-export `IntlRelativeFormat` as the CommonJS default exports with all the
 	// locale data registered, and with English set as the default locale. Define
@@ -32806,13 +32803,13 @@
 
 
 /***/ },
-/* 311 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$core$$ = __webpack_require__(312), src$en$$ = __webpack_require__(315);
+	var src$core$$ = __webpack_require__(309), src$en$$ = __webpack_require__(312);
 
 	src$core$$["default"].__addLocaleData(src$en$$["default"]);
 	src$core$$["default"].defaultLocale = 'en';
@@ -32822,7 +32819,7 @@
 	//# sourceMappingURL=main.js.map
 
 /***/ },
-/* 312 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -32834,7 +32831,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var intl$messageformat$$ = __webpack_require__(300), src$diff$$ = __webpack_require__(313), src$es5$$ = __webpack_require__(314);
+	var intl$messageformat$$ = __webpack_require__(297), src$diff$$ = __webpack_require__(310), src$es5$$ = __webpack_require__(311);
 	exports["default"] = RelativeFormat;
 
 	// -----------------------------------------------------------------------------
@@ -33124,7 +33121,7 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ },
-/* 313 */
+/* 310 */
 /***/ function(module, exports) {
 
 	/*
@@ -33175,7 +33172,7 @@
 	//# sourceMappingURL=diff.js.map
 
 /***/ },
-/* 314 */
+/* 311 */
 /***/ function(module, exports) {
 
 	/*
@@ -33255,7 +33252,7 @@
 	//# sourceMappingURL=es5.js.map
 
 /***/ },
-/* 315 */
+/* 312 */
 /***/ function(module, exports) {
 
 	// GENERATED FILE
@@ -33265,13 +33262,13 @@
 	//# sourceMappingURL=en.js.map
 
 /***/ },
-/* 316 */
+/* 313 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 317 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -33329,21 +33326,21 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 318 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports = module.exports = __webpack_require__(319)['default'];
+	exports = module.exports = __webpack_require__(316)['default'];
 	exports['default'] = exports;
 
 
 /***/ },
-/* 319 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var src$es5$$ = __webpack_require__(320);
+	var src$es5$$ = __webpack_require__(317);
 	exports["default"] = createFormatCache;
 
 	// -----------------------------------------------------------------------------
@@ -33419,7 +33416,7 @@
 	//# sourceMappingURL=memoizer.js.map
 
 /***/ },
-/* 320 */
+/* 317 */
 /***/ function(module, exports) {
 
 	"use strict";
