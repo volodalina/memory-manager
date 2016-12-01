@@ -31,7 +31,7 @@ webpackJsonp([0],{
 
 	var _account2 = _interopRequireDefault(_account);
 
-	var _app = __webpack_require__(325);
+	var _app = __webpack_require__(327);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -382,15 +382,15 @@ webpackJsonp([0],{
 
 	var _common = __webpack_require__(320);
 
-	var _lock_open = __webpack_require__(328);
+	var _lock_open = __webpack_require__(324);
 
 	var _lock_open2 = _interopRequireDefault(_lock_open);
 
-	var _lock_outline = __webpack_require__(329);
+	var _lock_outline = __webpack_require__(325);
 
 	var _lock_outline2 = _interopRequireDefault(_lock_outline);
 
-	var _person = __webpack_require__(330);
+	var _person = __webpack_require__(326);
 
 	var _person2 = _interopRequireDefault(_person);
 
@@ -404,13 +404,13 @@ webpackJsonp([0],{
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'w-100p h-100p p-abs bg-90' },
+	    { className: 'wh-100p-abs bg-90' },
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'p-fx flex-outer-container flex-dir-col' },
+	      { className: 'p-fx flex-col-row-center-wh100p' },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'w-350px forms-names' },
+	        { className: 'choose-form-name' },
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: props.onOpenLoginForm,
@@ -431,19 +431,19 @@ webpackJsonp([0],{
 	      ),
 	      _react2.default.createElement(
 	        'form',
-	        { className: 'flex-inner-container flex-just-center' },
+	        { className: 'account' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'w-100p text-center select-lang' },
 	          _react2.default.createElement(
 	            'label',
-	            null,
+	            { className: 'color-white margin-r-10px' },
 	            _react2.default.createElement(_reactIntl.FormattedMessage, { id: _common.keys.$LANGUAGE }),
 	            ':'
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { value: props.lang, onChange: props.onChangeLanguage },
+	            { value: props.lang, onChange: props.onChangeLanguage, className: 'font-family-inh' },
 	            _react2.default.createElement(
 	              'option',
 	              { value: _constants.LANG.EN },
@@ -458,34 +458,34 @@ webpackJsonp([0],{
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'w-100p p-rel' },
+	          { className: 'w-100p-rel' },
 	          _react2.default.createElement('input', { type: 'text', value: props.user_name, placeholder: formatMessage({ id: _common.keys.$USER_NAME }),
-	            onChange: props.onChangeUsername }),
+	            onChange: props.onChangeUsername, className: 'input-textA100-with-icon' }),
 	          _react2.default.createElement(
 	            'label',
-	            { className: 'icon' },
+	            { className: 'label-icon-for-input' },
 	            _react2.default.createElement(_person2.default, null)
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'w-100p p-rel' },
+	          { className: 'w-100p-rel' },
 	          _react2.default.createElement('input', { type: 'password', value: props.password, placeholder: formatMessage({ id: _common.keys.$USER_PASSWORD }),
-	            onChange: props.onChangePassword }),
+	            onChange: props.onChangePassword, className: 'input-textA100-with-icon' }),
 	          _react2.default.createElement(
 	            'label',
-	            { className: 'icon' },
+	            { className: 'label-icon-for-input' },
 	            _react2.default.createElement(_lock_outline2.default, null)
 	          )
 	        ),
 	        props.mode === _constants.MODE.REGISTER ? _react2.default.createElement(
 	          'div',
 	          { className: 'w-100p p-rel' },
-	          _react2.default.createElement('input', { type: 'password', value: props.confirm_password,
+	          _react2.default.createElement('input', { type: 'password', value: props.confirm_password, className: 'input-textA100-with-icon',
 	            placeholder: formatMessage({ id: _common.keys.$PASSWORD_CONFIRM }), onChange: props.onChangeConfirmPassword }),
 	          _react2.default.createElement(
 	            'label',
-	            { className: 'icon' },
+	            { className: 'label-icon-for-input' },
 	            _react2.default.createElement(_lock_open2.default, null)
 	          )
 	        ) : null,
@@ -494,7 +494,7 @@ webpackJsonp([0],{
 	          { className: 'w-100p text-center' },
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'submit', className: 'submit' },
+	            { type: 'submit', className: 'btn-square-A700' },
 	            _react2.default.createElement(_reactIntl.FormattedMessage, { id: _common.keys.$LOG_IN })
 	          )
 	        ) : _react2.default.createElement(
@@ -502,7 +502,7 @@ webpackJsonp([0],{
 	          { className: 'w-100p text-center' },
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'submit', className: 'submit' },
+	            { type: 'submit', className: 'btn-square-A700' },
 	            _react2.default.createElement(_reactIntl.FormattedMessage, { id: _common.keys.$REGISTER_LOGIN })
 	          )
 	        )
@@ -551,7 +551,89 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 324:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LockOpenIcon = function LockOpenIcon(props, context) {
+	  return _react2.default.createElement(
+	    "svg",
+	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24" },
+	    _react2.default.createElement("path", { d: "M0 0h24v24H0z", fill: "none" }),
+	    _react2.default.createElement("path", {
+	      d: "M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z" })
+	  );
+	};
+	exports.default = LockOpenIcon;
+
+/***/ },
+
 /***/ 325:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LockOutlineIcon = function LockOutlineIcon(props, context) {
+	  return _react2.default.createElement(
+	    "svg",
+	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24" },
+	    _react2.default.createElement("path", { d: "M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z" })
+	  );
+	};
+	exports.default = LockOutlineIcon;
+
+/***/ },
+
+/***/ 326:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PersonIcon = function PersonIcon(props, context) {
+	  return _react2.default.createElement(
+	    "svg",
+	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24", xmlns: "http://www.w3.org/2000/svg" },
+	    _react2.default.createElement("path", {
+	      d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" }),
+	    _react2.default.createElement("path", { d: "M0 0h24v24H0z", fill: "none" })
+	  );
+	};
+	exports.default = PersonIcon;
+
+/***/ },
+
+/***/ 327:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -598,88 +680,6 @@ webpackJsonp([0],{
 	}(_react2.default.Component);
 
 	exports.default = App;
-
-/***/ },
-
-/***/ 328:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(7);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var LockOpenIcon = function LockOpenIcon(props, context) {
-	  return _react2.default.createElement(
-	    "svg",
-	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24" },
-	    _react2.default.createElement("path", { d: "M0 0h24v24H0z", fill: "none" }),
-	    _react2.default.createElement("path", {
-	      d: "M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z" })
-	  );
-	};
-	exports.default = LockOpenIcon;
-
-/***/ },
-
-/***/ 329:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(7);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var LockOutlineIcon = function LockOutlineIcon(props, context) {
-	  return _react2.default.createElement(
-	    "svg",
-	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24" },
-	    _react2.default.createElement("path", { d: "M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z" })
-	  );
-	};
-	exports.default = LockOutlineIcon;
-
-/***/ },
-
-/***/ 330:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(7);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var PersonIcon = function PersonIcon(props, context) {
-	  return _react2.default.createElement(
-	    "svg",
-	    { fill: "#000000", height: "24", viewBox: "0 0 24 24", width: "24", xmlns: "http://www.w3.org/2000/svg" },
-	    _react2.default.createElement("path", {
-	      d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" }),
-	    _react2.default.createElement("path", { d: "M0 0h24v24H0z", fill: "none" })
-	  );
-	};
-	exports.default = PersonIcon;
 
 /***/ }
 

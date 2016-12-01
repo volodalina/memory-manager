@@ -1,21 +1,13 @@
-.flex-outer-container {
+.flex{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.flex-inner-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .flex-just-center{
-  display: flex;
   justify-content: center;
+}
+
+.flex-align-center{
+  align-items: center;
 }
 
 .flex-wrap{
@@ -26,7 +18,19 @@
   flex-direction: column;
 }
 
+//mixed class
 .flex-col-center {
+  .flex;
   .flex-just-center;
   .flex-dir-col;
+}
+
+.flex-col-row-center{
+  .flex-col-center;
+  .flex-align-center;
+}
+
+.flex-col-row-center-wh100p{
+  .flex-col-row-center;
+  .wh-100p;
 }

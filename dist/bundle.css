@@ -1,19 +1,11 @@
-.flex-outer-container {
+.flex {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-.flex-inner-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 .flex-just-center {
-  display: flex;
   justify-content: center;
+}
+.flex-align-center {
+  align-items: center;
 }
 .flex-wrap {
   flex-wrap: wrap;
@@ -25,6 +17,20 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+.flex-col-row-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-col-row-center-wh100p {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 .bg-90 {
   background-color: #004D40;
@@ -40,6 +46,52 @@
 }
 .bg-400 {
   background-color: #1DE9B6;
+}
+.color-white {
+  color: #FFFFFF;
+}
+.btn-reset {
+  cursor: pointer;
+  background-color: unset;
+  border-style: none;
+}
+.btn-text-ital-hover-A100 {
+  margin: 0 10px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}
+.btn-text-ital-hover-A100:hover {
+  color: #A7FFEB;
+}
+.btn-text-ital-hover-A100:focus {
+  outline: none;
+}
+.btn-text-ital-hover-A100.selected {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #A7FFEB;
+  text-decoration: underline;
+}
+.btn-square-A700 {
+  width: 100%;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 18px;
+  background-color: #00BFA5;
+  cursor: pointer;
+  padding: 5px;
+  font-weight: bold;
+  border: none;
+}
+.btn-square-A700:focus {
+  outline: #FFFFFF auto 5px;
+}
+.btn-square-A700:hover {
+  background-color: #4DB6AC;
 }
 body {
   margin: 0;
@@ -58,8 +110,22 @@ body {
 .w-350px {
   width: 350px;
 }
+.w-24px {
+  width: 24px;
+}
 .h-100p {
   height: 100%;
+}
+.h-24px {
+  height: 24px;
+}
+.wh-100p {
+  width: 100%;
+  height: 100%;
+}
+.wh-24px {
+  width: 24px;
+  height: 24px;
 }
 .p-abs {
   position: absolute;
@@ -73,96 +139,69 @@ body {
 .text-center {
   text-align: center;
 }
-.forms-names {
+.font-family-inh {
+  font-family: inherit;
+}
+.margin-r-10px {
+  margin-right: 10px;
+}
+.wh-100p-abs {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.w-100p-rel {
+  width: 100%;
+  position: relative;
+}
+.choose-form-name {
+  width: 350px;
   background-color: #00695C;
-  display: flex;
-  justify-content: center;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+  text-align: center;
   box-sizing: border-box;
   padding: 5px;
   border-radius: 5px 5px 0 0;
 }
-.forms-names button,
-.forms-names label {
+.choose-form-name button {
+  cursor: pointer;
+  background-color: unset;
+  border-style: none;
+  margin: 0 10px;
+  letter-spacing: 2px;
   color: #FFFFFF;
   font-size: 24px;
   font-family: "MarckScript", Helvetica, Arial, sans-serif;
 }
-.forms-names button {
-  margin: 0 10px;
-  cursor: pointer;
-  background-color: unset;
-  border-style: none;
-  letter-spacing: 2px;
-}
-.forms-names button:focus {
-  outline: none;
-}
-.forms-names button:hover {
+.choose-form-name button:hover {
   color: #A7FFEB;
 }
-.forms-names button.selected {
+.choose-form-name button:focus {
+  outline: none;
+}
+.choose-form-name button.selected {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #A7FFEB;
   text-decoration: underline;
 }
-form {
+form.account {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 350px;
   background-color: #00796B;
   box-sizing: border-box;
   padding: 10px 15px;
   border-radius: 0 0 5px 5px;
 }
-form > div {
+form.account > div {
   margin: 5px 0;
-}
-form .select-lang {
-  color: #FFFFFF;
-}
-form .select-lang > label {
-  margin-right: 10px;
-}
-form .select-lang select {
-  font-family: inherit;
-}
-form input {
-  font-family: "MarckScript", Helvetica, Arial, sans-serif;
-  padding: 5px 5px 5px 35px;
-  font-size: 18px;
-  width: 100%;
-  box-sizing: border-box;
-}
-form input:focus {
-  outline: #A7FFEB auto 5px;
-}
-form input:focus + label.icon,
-form input:hover + label.icon {
-  opacity: 1;
-}
-form label.icon {
-  position: absolute;
-  display: block;
-  width: 24px;
-  height: 24px;
-  margin-left: 5px;
-  top: 6px;
-  opacity: 0.5;
-}
-form button.submit {
-  width: 100%;
-  color: #FFFFFF;
-  font-family: inherit;
-  font-size: 18px;
-  background-color: #00BFA5;
-  cursor: pointer;
-  padding: 5px;
-  font-weight: bold;
-  border: none;
-}
-form button.submit:focus {
-  outline: #FFFFFF auto 5px;
-}
-form button.submit:hover {
-  background-color: #4DB6AC;
 }
 @font-face {
   font-family: "CormorantInfant-Reg";
@@ -199,4 +238,44 @@ form button.submit:hover {
 }
 .font-family-MarckScript {
   font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}
+.marckScript-24p-white {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}
+.marckScript-18p {
+  font-size: 18px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+}
+.marckScript-24p-A100-bold-underl {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #A7FFEB;
+  text-decoration: underline;
+}
+.input-textA100-with-icon {
+  font-size: 18px;
+  font-family: "MarckScript", Helvetica, Arial, sans-serif;
+  padding: 5px 5px 5px 35px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.input-textA100-with-icon:focus {
+  outline: #A7FFEB auto 5px;
+}
+.input-textA100-with-icon:focus + label.label-icon-for-input,
+.input-textA100-with-icon:hover + label.label-icon-for-input {
+  opacity: 1;
+}
+.label-icon-for-input {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  top: 6px;
+  opacity: 0.5;
 }

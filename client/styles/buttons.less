@@ -1,0 +1,38 @@
+.btn-reset{
+  cursor: pointer;
+  background-color: unset;
+  border-style: none;
+}
+
+.btn-text-ital-hover-A100{
+  margin: 0 10px;
+  letter-spacing: 2px;
+  .marckScript-24p-white;
+  &:hover {
+    color: @A100;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.selected{
+    .marckScript-24p-A100-bold-underl;
+  }
+}
+
+.btn-square-A700{
+  .w-100p;
+  .color-white;
+  .font-family-inh;
+  font-size: 18px;
+  background-color: @A700;
+  cursor: pointer;
+  padding: 5px;
+  font-weight: bold;
+  border: none;
+  &:focus {
+    outline: @white auto 5px;
+  }
+  &:hover {
+    background-color: @300;
+  }
+}

@@ -16,9 +16,9 @@ import  {
 const Account = (props) => {
   const {formatMessage} = props.intl;
 
-  return <div className="w-100p h-100p p-abs bg-90">
-    <div className="p-fx flex-outer-container flex-dir-col">
-      <div className="w-350px forms-names">
+  return <div className="wh-100p-abs bg-90">
+    <div className="p-fx flex-col-row-center-wh100p">
+      <div className="choose-form-name">
         <button onClick={props.onOpenLoginForm}
                 className={props.mode === MODE.LOGIN ? 'selected ' : ''}>
           <FormattedMessage id={keys.$LOGIN}/>
@@ -29,12 +29,12 @@ const Account = (props) => {
           <FormattedMessage id={keys.$REGISTER}/>
         </button>
       </div>
-      <form className="flex-inner-container flex-just-center">
+      <form className="account">
         <div className="w-100p text-center select-lang">
-          <label>
+          <label className="color-white margin-r-10px">
             <FormattedMessage id={keys.$LANGUAGE}/>:
           </label>
-          <select value={props.lang} onChange={props.onChangeLanguage}>
+          <select value={props.lang} onChange={props.onChangeLanguage} className="font-family-inh">
             <option value={LANG.EN}>
               {formatMessage({id: keys.$EN})}
             </option>
@@ -43,36 +43,36 @@ const Account = (props) => {
             </option>
           </select>
         </div>
-        <div className="w-100p p-rel">
+        <div className="w-100p-rel">
           <input type="text" value={props.user_name} placeholder={formatMessage({id: keys.$USER_NAME})}
-                 onChange={props.onChangeUsername}/>
-          <label className="icon">
+                 onChange={props.onChangeUsername} className="input-textA100-with-icon"/>
+          <label className="label-icon-for-input">
             <PersonIcon/>
           </label>
         </div>
-        <div className="w-100p p-rel">
+        <div className="w-100p-rel">
           <input type="password" value={props.password} placeholder={formatMessage({id: keys.$USER_PASSWORD})}
-                 onChange={props.onChangePassword}/>
-          <label className="icon">
+                 onChange={props.onChangePassword} className="input-textA100-with-icon"/>
+          <label className="label-icon-for-input">
             <LockOutlineIcon/>
           </label>
         </div>
         {props.mode === MODE.REGISTER ?
           <div className="w-100p p-rel">
-            <input type="password" value={props.confirm_password}
+            <input type="password" value={props.confirm_password} className="input-textA100-with-icon"
                    placeholder={formatMessage({id: keys.$PASSWORD_CONFIRM})} onChange={props.onChangeConfirmPassword}/>
-            <label className="icon">
+            <label className="label-icon-for-input">
               <LockOpenIcon/>
             </label>
           </div> : null}
         {props.mode === MODE.LOGIN ?
           <div className="w-100p text-center">
-            <button type="submit" className="submit">
+            <button type="submit" className="btn-square-A700">
               <FormattedMessage id={keys.$LOG_IN}/>
             </button>
           </div> :
           <div className="w-100p text-center">
-            <button type="submit" className="submit">
+            <button type="submit" className="btn-square-A700">
               <FormattedMessage id={keys.$REGISTER_LOGIN}/>
             </button>
           </div>}
