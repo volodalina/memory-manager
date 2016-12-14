@@ -4,6 +4,7 @@ export const INPUT_USERNAME = 'INPUT_USERNAME';
 export const INPUT_USER_PASSWORD = 'INPUT_USER_PASSWORD';
 export const INPUT_CONFIRM_PASSWORD = 'INPUT_CONFIRM_PASSWORD';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+export const SUBMIT_ACCOUNT = 'SUBMIT_ACCOUNT';
 
 export function openRegisterForm(account_mode) {
   return {type: OPEN_REGISTER_FORM, account_mode}
@@ -22,4 +23,7 @@ export function inputConfirmPassword(confirm_password) {
 }
 export function changeLanguage(language) {
   return {type: CHANGE_LANGUAGE, language}
+}
+export function submitAccount(username, user_password, confirm_password) {
+  return {type: SUBMIT_ACCOUNT, username, user_password, confirm_password}
 }

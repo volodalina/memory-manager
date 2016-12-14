@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {FormattedMessage, injectIntl} from 'react-intl'
+import {browserHistory} from 'react-router'
 
 import {MODE, LANG} from '../js/constants'
 import {keys} from '../js/nls/en/common'
@@ -10,8 +11,11 @@ import PersonIcon from './svg/person'
 
 import  {
   openRegisterForm, openLoginForm,
-  inputUsername, inputUserPassword, inputConfirmPassword, changeLanguage
+  inputUsername, inputUserPassword, inputConfirmPassword, changeLanguage,
+  submitAccount
 } from "../js/actions/account_actions"
+
+let input_username, input_password, input_confirm_password;
 
 const Account = (props) => {
   const {formatMessage} = props.intl;
@@ -29,7 +33,7 @@ const Account = (props) => {
           <FormattedMessage id={keys.$REGISTER}/>
         </button>
       </div>
-      <form className="account">
+      <form className="account" onSubmit={props.onSubmit}>
         <div className="w-100p text-center select-lang">
           <label className="color-white margin-r-10px">
             <FormattedMessage id={keys.$LANGUAGE}/>:
@@ -45,14 +49,16 @@ const Account = (props) => {
         </div>
         <div className="w-100p-rel">
           <input type="text" value={props.user_name} placeholder={formatMessage({id: keys.$USER_NAME})}
-                 onChange={props.onChangeUsername} className="input-textA100-with-icon"/>
+                 onChange={props.onChangeUsername} className="input-textA100-with-icon"
+                 ref={node => {input_username = node}}/>
           <label className="label-icon-for-input">
             <PersonIcon/>
           </label>
         </div>
         <div className="w-100p-rel">
           <input type="password" value={props.password} placeholder={formatMessage({id: keys.$USER_PASSWORD})}
-                 onChange={props.onChangePassword} className="input-textA100-with-icon"/>
+                 onChange={props.onChangePassword} className="input-textA100-with-icon"
+                 ref={node => {input_password = node}}/>
           <label className="label-icon-for-input">
             <LockOutlineIcon/>
           </label>
@@ -60,7 +66,8 @@ const Account = (props) => {
         {props.mode === MODE.REGISTER ?
           <div className="w-100p p-rel">
             <input type="password" value={props.confirm_password} className="input-textA100-with-icon"
-                   placeholder={formatMessage({id: keys.$PASSWORD_CONFIRM})} onChange={props.onChangeConfirmPassword}/>
+                   placeholder={formatMessage({id: keys.$PASSWORD_CONFIRM})} onChange={props.onChangeConfirmPassword}
+                   ref={node => {input_confirm_password = node}}/>
             <label className="label-icon-for-input">
               <LockOpenIcon/>
             </label>
@@ -111,6 +118,14 @@ const mapDispatchToProps = (dispatch) => {
     },
     onChangeLanguage: (event) => {
       dispatch(changeLanguage(event.target.value))
+    },
+
+    onSubmit: (event) => {
+      event.preventDefault();
+
+      let confirm_password = input_confirm_password ? input_confirm_password.value : null;
+      dispatch(submitAccount(input_username.value, input_password.value, confirm_password));
+      // browserHistory.push('/manager');
     }
   }
 };
