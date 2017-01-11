@@ -8,6 +8,11 @@ const MODE = {
   },
   NODE_ENV = {
     PRODUCTION: 'production'
+  },
+  POSITION = {
+    LEFT: 'LEFT',
+    RIGHT: 'RIGHT',
+    CENTER: 'CENTER'
   };
 
-module.exports = {MODE, LANG, NODE_ENV};
+module.exports = {MODE, LANG, NODE_ENV, POSITION};

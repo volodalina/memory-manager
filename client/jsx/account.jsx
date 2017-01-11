@@ -125,7 +125,7 @@ const mapDispatchToProps = (dispatch) => {
 
       let confirm_password = input_confirm_password ? input_confirm_password.value : null;
       dispatch(submitAccount(input_username.value, input_password.value, confirm_password));
-      // browserHistory.push('/manager');
+      browserHistory.push('/manager');
     }
   }
 };

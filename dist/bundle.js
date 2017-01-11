@@ -23,15 +23,15 @@ webpackJsonp([0],{
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	__webpack_require__(292);
+	__webpack_require__(293);
 
-	var _language = __webpack_require__(298);
+	var _language = __webpack_require__(299);
 
-	var _account = __webpack_require__(327);
+	var _account = __webpack_require__(328);
 
 	var _account2 = _interopRequireDefault(_account);
 
-	var _app = __webpack_require__(331);
+	var _app = __webpack_require__(332);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -72,7 +72,7 @@ webpackJsonp([0],{
 /***/ 289:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -82,14 +82,20 @@ webpackJsonp([0],{
 
 	var _account_actions = __webpack_require__(290);
 
-	var _constants = __webpack_require__(291);
+	var _manager_actions = __webpack_require__(291);
+
+	var _constants = __webpack_require__(292);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	var INITIAL_STATE = {
 	  user_name: '',
 	  password: '',
 	  confirm_password: '',
 	  account_mode: _constants.MODE.LOGIN,
-	  language: _constants.LANG.EN
+	  language: _constants.LANG.EN,
+	  sections: [],
+	  unique_id: 0
 	};
 
 	var reducer = function reducer() {
@@ -97,38 +103,56 @@ webpackJsonp([0],{
 	  var action = arguments[1];
 
 	  switch (action.type) {
+	    //account_actions
 	    case _account_actions.OPEN_REGISTER_FORM:
-	      state.account_mode = action.account_mode;
-	      state.user_name = '';
-	      state.password = '';
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        account_mode: action.account_mode,
+	        user_name: '',
+	        password: ''
+	      });
 	    case _account_actions.OPEN_LOGIN_FORM:
-	      state.account_mode = action.account_mode;
-	      state.user_name = '';
-	      state.password = '';
-	      state.confirm_password = '';
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        account_mode: action.account_mode,
+	        user_name: '',
+	        password: '',
+	        confirm_password: ''
+	      });
 	    case _account_actions.INPUT_USERNAME:
-	      state.user_name = action.username;
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        user_name: action.username
+	      });
 	    case _account_actions.INPUT_USER_PASSWORD:
-	      state.password = action.user_password;
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        password: action.user_password
+	      });
 	    case _account_actions.INPUT_CONFIRM_PASSWORD:
-	      state.confirm_password = action.confirm_password;
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        confirm_password: action.confirm_password
+	      });
 	    case _account_actions.CHANGE_LANGUAGE:
-	      state.language = action.language;
-	      return Object.assign({}, state);
+	      return Object.assign({}, state, {
+	        language: action.language
+	      });
 	    case _account_actions.SUBMIT_ACCOUNT:
-	      //
-	      state.user_name = '';
-	      state.password = '';
-	      state.confirm_password = '';
+	      return Object.assign({}, state, {
+	        user_name: '',
+	        password: '',
+	        confirm_password: ''
+	      });
 
-	      console.log('SUBMIT_ACCOUNT');
-	      _reactRouter.browserHistory.push('/manager');
-	      return Object.assign({}, state);
+	    //manager_actions
+	    case _manager_actions.CHANGE_POSITION_CONTAINER:
+	      var new_state = Object.assign({}, state, {
+	        sections: [].concat(_toConsumableArray(state.sections))
+	      }),
+	          index = state.sections.indexOf(action.section);
+	      new_state.sections[index].position = action.position;
+	      return new_state;
+	    case _manager_actions.ADD_SECTION:
+	      return Object.assign({}, state, {
+	        unique_id: action.section.id,
+	        sections: [].concat(_toConsumableArray(state.sections), [action.section])
+	      });
 	    default:
 	      return state;
 	  }
@@ -190,6 +214,28 @@ webpackJsonp([0],{
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.changePositionContainer = changePositionContainer;
+	exports.addSection = addSection;
+	var CHANGE_POSITION_CONTAINER = exports.CHANGE_POSITION_CONTAINER = 'CHANGE_POSITION_CONTAINER';
+	var ADD_SECTION = exports.ADD_SECTION = 'ADD_SECTION';
+
+	function changePositionContainer(section, position) {
+	  return { type: CHANGE_POSITION_CONTAINER, section: section, position: position };
+	}
+	function addSection(section) {
+	  return { type: ADD_SECTION, section: section };
+	}
+
+/***/ },
+
+/***/ 292:
+/***/ function(module, exports) {
+
+	'use strict';
+
 	var MODE = {
 	  LOGIN: 'LOGIN',
 	  REGISTER: 'REGISTER'
@@ -200,20 +246,25 @@ webpackJsonp([0],{
 	},
 	    NODE_ENV = {
 	  PRODUCTION: 'production'
+	},
+	    POSITION = {
+	  LEFT: 'LEFT',
+	  RIGHT: 'RIGHT',
+	  CENTER: 'CENTER'
 	};
 
-	module.exports = { MODE: MODE, LANG: LANG, NODE_ENV: NODE_ENV };
+	module.exports = { MODE: MODE, LANG: LANG, NODE_ENV: NODE_ENV, POSITION: POSITION };
 
 /***/ },
 
-/***/ 292:
+/***/ 293:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 298:
+/***/ 299:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -225,7 +276,7 @@ webpackJsonp([0],{
 
 	var _messages_dic;
 
-	var _constants = __webpack_require__(291);
+	var _constants = __webpack_require__(292);
 
 	var _react = __webpack_require__(11);
 
@@ -233,19 +284,19 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(249);
 
-	var _reactIntl = __webpack_require__(299);
+	var _reactIntl = __webpack_require__(300);
 
-	var _en = __webpack_require__(322);
+	var _en = __webpack_require__(323);
 
 	var _en2 = _interopRequireDefault(_en);
 
-	var _ru = __webpack_require__(323);
+	var _ru = __webpack_require__(324);
 
 	var _ru2 = _interopRequireDefault(_ru);
 
-	var _common = __webpack_require__(324);
+	var _common = __webpack_require__(325);
 
-	var _common2 = __webpack_require__(326);
+	var _common2 = __webpack_require__(327);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -282,21 +333,21 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 322:
+/***/ 323:
 /***/ function(module, exports, __webpack_require__) {
 
 	!function(e,a){ true?module.exports=a():"function"==typeof define&&define.amd?define(a):(e.ReactIntlLocaleData=e.ReactIntlLocaleData||{},e.ReactIntlLocaleData.en=a())}(this,function(){"use strict";var e=[{locale:"en",pluralRuleFunction:function(e,a){var n=String(e).split("."),l=!n[1],o=Number(n[0])==e,t=o&&n[0].slice(-1),r=o&&n[0].slice(-2);return a?1==t&&11!=r?"one":2==t&&12!=r?"two":3==t&&13!=r?"few":"other":1==e&&l?"one":"other"},fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},minute:{displayName:"minute",relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}}}},{locale:"en-001",parentLocale:"en"},{locale:"en-150",parentLocale:"en-001"},{locale:"en-AG",parentLocale:"en-001"},{locale:"en-AI",parentLocale:"en-001"},{locale:"en-AS",parentLocale:"en"},{locale:"en-AT",parentLocale:"en-150"},{locale:"en-AU",parentLocale:"en-001"},{locale:"en-BB",parentLocale:"en-001"},{locale:"en-BE",parentLocale:"en-001"},{locale:"en-BI",parentLocale:"en"},{locale:"en-BM",parentLocale:"en-001"},{locale:"en-BS",parentLocale:"en-001"},{locale:"en-BW",parentLocale:"en-001"},{locale:"en-BZ",parentLocale:"en-001"},{locale:"en-CA",parentLocale:"en-001"},{locale:"en-CC",parentLocale:"en-001"},{locale:"en-CH",parentLocale:"en-150"},{locale:"en-CK",parentLocale:"en-001"},{locale:"en-CM",parentLocale:"en-001"},{locale:"en-CX",parentLocale:"en-001"},{locale:"en-CY",parentLocale:"en-001"},{locale:"en-DE",parentLocale:"en-150"},{locale:"en-DG",parentLocale:"en-001"},{locale:"en-DK",parentLocale:"en-150"},{locale:"en-DM",parentLocale:"en-001"},{locale:"en-Dsrt",pluralRuleFunction:function(e,a){return"other"},fields:{year:{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},month:{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},day:{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},hour:{displayName:"Hour",relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},minute:{displayName:"Minute",relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},second:{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}}}},{locale:"en-ER",parentLocale:"en-001"},{locale:"en-FI",parentLocale:"en-150"},{locale:"en-FJ",parentLocale:"en-001"},{locale:"en-FK",parentLocale:"en-001"},{locale:"en-FM",parentLocale:"en-001"},{locale:"en-GB",parentLocale:"en-001"},{locale:"en-GD",parentLocale:"en-001"},{locale:"en-GG",parentLocale:"en-001"},{locale:"en-GH",parentLocale:"en-001"},{locale:"en-GI",parentLocale:"en-001"},{locale:"en-GM",parentLocale:"en-001"},{locale:"en-GU",parentLocale:"en"},{locale:"en-GY",parentLocale:"en-001"},{locale:"en-HK",parentLocale:"en-001"},{locale:"en-IE",parentLocale:"en-001"},{locale:"en-IL",parentLocale:"en-001"},{locale:"en-IM",parentLocale:"en-001"},{locale:"en-IN",parentLocale:"en-001"},{locale:"en-IO",parentLocale:"en-001"},{locale:"en-JE",parentLocale:"en-001"},{locale:"en-JM",parentLocale:"en-001"},{locale:"en-KE",parentLocale:"en-001"},{locale:"en-KI",parentLocale:"en-001"},{locale:"en-KN",parentLocale:"en-001"},{locale:"en-KY",parentLocale:"en-001"},{locale:"en-LC",parentLocale:"en-001"},{locale:"en-LR",parentLocale:"en-001"},{locale:"en-LS",parentLocale:"en-001"},{locale:"en-MG",parentLocale:"en-001"},{locale:"en-MH",parentLocale:"en"},{locale:"en-MO",parentLocale:"en-001"},{locale:"en-MP",parentLocale:"en"},{locale:"en-MS",parentLocale:"en-001"},{locale:"en-MT",parentLocale:"en-001"},{locale:"en-MU",parentLocale:"en-001"},{locale:"en-MW",parentLocale:"en-001"},{locale:"en-MY",parentLocale:"en-001"},{locale:"en-NA",parentLocale:"en-001"},{locale:"en-NF",parentLocale:"en-001"},{locale:"en-NG",parentLocale:"en-001"},{locale:"en-NL",parentLocale:"en-150"},{locale:"en-NR",parentLocale:"en-001"},{locale:"en-NU",parentLocale:"en-001"},{locale:"en-NZ",parentLocale:"en-001"},{locale:"en-PG",parentLocale:"en-001"},{locale:"en-PH",parentLocale:"en-001"},{locale:"en-PK",parentLocale:"en-001"},{locale:"en-PN",parentLocale:"en-001"},{locale:"en-PR",parentLocale:"en"},{locale:"en-PW",parentLocale:"en-001"},{locale:"en-RW",parentLocale:"en-001"},{locale:"en-SB",parentLocale:"en-001"},{locale:"en-SC",parentLocale:"en-001"},{locale:"en-SD",parentLocale:"en-001"},{locale:"en-SE",parentLocale:"en-150"},{locale:"en-SG",parentLocale:"en-001"},{locale:"en-SH",parentLocale:"en-001"},{locale:"en-SI",parentLocale:"en-150"},{locale:"en-SL",parentLocale:"en-001"},{locale:"en-SS",parentLocale:"en-001"},{locale:"en-SX",parentLocale:"en-001"},{locale:"en-SZ",parentLocale:"en-001"},{locale:"en-Shaw",pluralRuleFunction:function(e,a){return"other"},fields:{year:{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},month:{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},day:{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},hour:{displayName:"Hour",relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},minute:{displayName:"Minute",relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},second:{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}}}},{locale:"en-TC",parentLocale:"en-001"},{locale:"en-TK",parentLocale:"en-001"},{locale:"en-TO",parentLocale:"en-001"},{locale:"en-TT",parentLocale:"en-001"},{locale:"en-TV",parentLocale:"en-001"},{locale:"en-TZ",parentLocale:"en-001"},{locale:"en-UG",parentLocale:"en-001"},{locale:"en-UM",parentLocale:"en"},{locale:"en-US",parentLocale:"en"},{locale:"en-VC",parentLocale:"en-001"},{locale:"en-VG",parentLocale:"en-001"},{locale:"en-VI",parentLocale:"en"},{locale:"en-VU",parentLocale:"en-001"},{locale:"en-WS",parentLocale:"en-001"},{locale:"en-ZA",parentLocale:"en-001"},{locale:"en-ZM",parentLocale:"en-001"},{locale:"en-ZW",parentLocale:"en-001"}];return e});
 
 /***/ },
 
-/***/ 323:
+/***/ 324:
 /***/ function(module, exports, __webpack_require__) {
 
 	!function(e,a){ true?module.exports=a():"function"==typeof define&&define.amd?define(a):(e.ReactIntlLocaleData=e.ReactIntlLocaleData||{},e.ReactIntlLocaleData.ru=a())}(this,function(){"use strict";var e=[{locale:"ru",pluralRuleFunction:function(e,a){var t=String(e).split("."),r=t[0],o=!t[1],n=r.slice(-1),l=r.slice(-2);return a?"other":o&&1==n&&11!=l?"one":o&&n>=2&&n<=4&&(l<12||l>14)?"few":o&&0==n||o&&n>=5&&n<=9||o&&l>=11&&l<=14?"many":"other"},fields:{year:{displayName:"год",relative:{0:"в этом году",1:"в следующем году","-1":"в прошлом году"},relativeTime:{future:{one:"через {0} год",few:"через {0} года",many:"через {0} лет",other:"через {0} года"},past:{one:"{0} год назад",few:"{0} года назад",many:"{0} лет назад",other:"{0} года назад"}}},month:{displayName:"месяц",relative:{0:"в этом месяце",1:"в следующем месяце","-1":"в прошлом месяце"},relativeTime:{future:{one:"через {0} месяц",few:"через {0} месяца",many:"через {0} месяцев",other:"через {0} месяца"},past:{one:"{0} месяц назад",few:"{0} месяца назад",many:"{0} месяцев назад",other:"{0} месяца назад"}}},day:{displayName:"день",relative:{0:"сегодня",1:"завтра",2:"послезавтра","-2":"позавчера","-1":"вчера"},relativeTime:{future:{one:"через {0} день",few:"через {0} дня",many:"через {0} дней",other:"через {0} дней"},past:{one:"{0} день назад",few:"{0} дня назад",many:"{0} дней назад",other:"{0} дня назад"}}},hour:{displayName:"час",relativeTime:{future:{one:"через {0} час",few:"через {0} часа",many:"через {0} часов",other:"через {0} часа"},past:{one:"{0} час назад",few:"{0} часа назад",many:"{0} часов назад",other:"{0} часа назад"}}},minute:{displayName:"минута",relativeTime:{future:{one:"через {0} минуту",few:"через {0} минуты",many:"через {0} минут",other:"через {0} минуты"},past:{one:"{0} минуту назад",few:"{0} минуты назад",many:"{0} минут назад",other:"{0} минуты назад"}}},second:{displayName:"секунда",relative:{0:"сейчас"},relativeTime:{future:{one:"через {0} секунду",few:"через {0} секунды",many:"через {0} секунд",other:"через {0} секунды"},past:{one:"{0} секунду назад",few:"{0} секунды назад",many:"{0} секунд назад",other:"{0} секунды назад"}}}}},{locale:"ru-BY",parentLocale:"ru"},{locale:"ru-KG",parentLocale:"ru"},{locale:"ru-KZ",parentLocale:"ru"},{locale:"ru-MD",parentLocale:"ru"},{locale:"ru-UA",parentLocale:"ru"}];return e});
 
 /***/ },
 
-/***/ 324:
+/***/ 325:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -304,7 +355,7 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var reflect = __webpack_require__(325),
+	var reflect = __webpack_require__(326),
 	    messages = {
 	  $WELCOME: 'Hello {name}, you have {unreadCount, number} {unreadCount, plural,\n                        one {message}\n                        other {messages}\n                      }',
 	  $LOGIN: 'Login',
@@ -325,7 +376,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 325:
+/***/ 326:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -347,7 +398,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 326:
+/***/ 327:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -355,7 +406,7 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var reflect = __webpack_require__(325),
+	var reflect = __webpack_require__(326),
 	    messages = {
 	  $WELCOME: '\u041F\u0440\u0438\u0432\u0435\u0442 {name}, \u0443 \u0432\u0430\u0441 {unreadCount, number} {unreadCount, plural,\n                      one {message}\n                      other {messages}\n                    }',
 
@@ -377,7 +428,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 327:
+/***/ 328:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -392,23 +443,23 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(249);
 
-	var _reactIntl = __webpack_require__(299);
+	var _reactIntl = __webpack_require__(300);
 
 	var _reactRouter = __webpack_require__(193);
 
-	var _constants = __webpack_require__(291);
+	var _constants = __webpack_require__(292);
 
-	var _common = __webpack_require__(324);
+	var _common = __webpack_require__(325);
 
-	var _lock_open = __webpack_require__(328);
+	var _lock_open = __webpack_require__(329);
 
 	var _lock_open2 = _interopRequireDefault(_lock_open);
 
-	var _lock_outline = __webpack_require__(329);
+	var _lock_outline = __webpack_require__(330);
 
 	var _lock_outline2 = _interopRequireDefault(_lock_outline);
 
-	var _person = __webpack_require__(330);
+	var _person = __webpack_require__(331);
 
 	var _person2 = _interopRequireDefault(_person);
 
@@ -579,7 +630,7 @@ webpackJsonp([0],{
 
 	      var confirm_password = input_confirm_password ? input_confirm_password.value : null;
 	      dispatch((0, _account_actions.submitAccount)(input_username.value, input_password.value, confirm_password));
-	      // browserHistory.push('/manager');
+	      _reactRouter.browserHistory.push('/manager');
 	    }
 	  };
 	};
@@ -590,7 +641,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 328:
+/***/ 329:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -618,7 +669,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 329:
+/***/ 330:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -644,7 +695,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 330:
+/***/ 331:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -672,53 +723,181 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 331:
+/***/ 332:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _react = __webpack_require__(11);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(249);
+
+	var _reactIntl = __webpack_require__(300);
+
+	var _constants = __webpack_require__(292);
+
+	var _section = __webpack_require__(333);
+
+	var _section2 = _interopRequireDefault(_section);
+
+	var _manager_actions = __webpack_require__(291);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var App = function App(props) {
+	  var onAddSection = props.onAddSection,
+	      unique_id = props.unique_id,
+	      sections = props.sections;
+
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'wh-100p-abs bg-50' },
+	    _react2.default.createElement(
+	      'button',
+	      { onClick: onAddSection.bind(undefined, unique_id) },
+	      '+ Add new section'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'p-fx flex-col-row-center-wh100p' },
+	      sections.map(function (section) {
+	        return _react2.default.createElement(_section2.default, { key: section.id, section: section });
+	      })
+	    )
+	  );
+	};
+
+	var mapStateToProps = function mapStateToProps(state, props) {
+	  return {
+	    position: state.position_container,
+	    unique_id: state.unique_id,
+	    sections: state.sections
+	  };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onAddSection: function onAddSection(new_id, event) {
+	      dispatch((0, _manager_actions.addSection)({
+	        position: _constants.POSITION.CENTER,
+	        id: ++new_id
+	      }));
+	    }
+	  };
+	};
+
+	var WrappedApp = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App));
+
+	exports.default = WrappedApp;
+
+/***/ },
+
+/***/ 333:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _react = __webpack_require__(11);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(249);
+
+	var _reactIntl = __webpack_require__(300);
+
+	var _constants = __webpack_require__(292);
+
+	var _manager_actions = __webpack_require__(291);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var Section = function Section(props) {
+	  var onChangePositionContainer = props.onChangePositionContainer,
+	      section = props.section,
+	      position = section.position;
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	  var className = position === _constants.POSITION.CENTER ? "w-350px bg-60" : position === _constants.POSITION.LEFT ? "w-350px bg-60 p-abs-left-top-0" : "w-350px bg-60 p-abs-right-top-0";
 
-	var input_left_panel = void 0,
-	    input_right_panel = void 0,
-	    input_center = void 0;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: className, style: { border: '1px solid blue' } },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'w-100p' },
+	      _react2.default.createElement('input', { type: 'radio',
+	        name: 'position_container_' + section.id,
+	        value: _constants.POSITION.LEFT,
+	        checked: position === _constants.POSITION.LEFT,
+	        onChange: onChangePositionContainer.bind(undefined, section) }),
+	      _react2.default.createElement(
+	        'label',
+	        { className: '' },
+	        'I am left panel'
+	      )
+	    ),
+	    _react2.default.createElement('hr', null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'w-100p-rel' },
+	      _react2.default.createElement('input', { type: 'radio',
+	        name: 'position_container_' + section.id,
+	        value: _constants.POSITION.CENTER,
+	        checked: position === _constants.POSITION.CENTER,
+	        onChange: onChangePositionContainer.bind(undefined, section) }),
+	      _react2.default.createElement(
+	        'label',
+	        { className: '' },
+	        'I am center container'
+	      )
+	    ),
+	    _react2.default.createElement('hr', null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'w-100p-rel' },
+	      _react2.default.createElement('input', { type: 'radio',
+	        name: 'position_container_' + section.id,
+	        value: _constants.POSITION.RIGHT,
+	        checked: position === _constants.POSITION.RIGHT,
+	        onChange: onChangePositionContainer.bind(undefined, section) }),
+	      _react2.default.createElement(
+	        'label',
+	        { className: '' },
+	        'I am right panel'
+	      )
+	    )
+	  );
+	};
 
-	var App = function (_React$Component) {
-	  _inherits(App, _React$Component);
+	var mapStateToProps = function mapStateToProps(state, props) {
+	  return {
+	    unique_id: state.unique_id,
+	    sections: state.sections
+	  };
+	};
 
-	  function App() {
-	    _classCallCheck(this, App);
-
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	  }
-
-	  _createClass(App, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement("div", { className: "wh-100p-abs bg-50" });
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onChangePositionContainer: function onChangePositionContainer(section, event) {
+	      dispatch((0, _manager_actions.changePositionContainer)(section, event.target.value));
 	    }
-	  }]);
+	  };
+	};
 
-	  return App;
-	}(_react2.default.Component);
+	var WrappedSection = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Section));
 
-	exports.default = App;
+	exports.default = WrappedSection;
 
 /***/ }
 

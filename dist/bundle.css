@@ -139,6 +139,14 @@ body {
 .p-rel {
   position: relative;
 }
+.left-top-0 {
+  left: 0;
+  top: 0;
+}
+.right-top-0 {
+  right: 0;
+  top: 0;
+}
 .text-center {
   text-align: center;
 }
@@ -156,6 +164,16 @@ body {
 .w-100p-rel {
   width: 100%;
   position: relative;
+}
+.p-abs-left-top-0 {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.p-abs-right-top-0 {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .choose-form-name {
   width: 350px;
