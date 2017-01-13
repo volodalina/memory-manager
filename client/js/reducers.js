@@ -13,6 +13,11 @@ import  {
   CHANGE_POSITION_CONTAINER,
   ADD_SECTION
 } from "./actions/manager_actions"
+import  {
+  START_OFFSET_PROCESS,
+  END_OFFSET_PROCESS,
+  ACTIVE_OFFSET_PROCESS
+} from "./actions/slider_actions"
 import {MODE, LANG} from './constants'
 
 const INITIAL_STATE = {
@@ -23,6 +28,24 @@ const INITIAL_STATE = {
   language: LANG.EN,
   sections: [],
   unique_id: 0,
+
+  initialPointerX: 0,
+  currentPointerX: 0,
+  pointerDrag: false,
+  viewportWidth: document.documentElement.clientWidth,
+  viewportHeight: document.documentElement.clientHeight,
+  trackLeft: 0,
+  slides: [
+    {
+      color: 'bg-50'
+    },
+    {
+      color: 'bg-60'
+    },
+    {
+      color: 'bg-70'
+    }
+  ]
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -80,6 +103,26 @@ const reducer = (state = INITIAL_STATE, action) => {
           ...state.sections,
           action.section
         ]
+      });
+
+      //slide_actions
+    case START_OFFSET_PROCESS:
+      return Object.assign({}, state, {
+        pointerDrag: action.pointerDrag,
+        initialPointerX: action.initialPointerX,
+        currentPointerX: action.initialPointerX,
+      });
+    case END_OFFSET_PROCESS:
+      return Object.assign({}, state, {
+        pointerDrag: action.pointerDrag,
+        initialPointerX: 0,
+        currentPointerX: 0,
+      });
+      case ACTIVE_OFFSET_PROCESS:
+      return Object.assign({}, state, {
+        currentPointerX: action.currentPointerX,
+        initialPointerX: action.currentPointerX,
+        trackLeft: state.trackLeft - action.difX,
       });
     default:
       return state;

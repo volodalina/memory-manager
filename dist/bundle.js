@@ -84,6 +84,8 @@ webpackJsonp([0],{
 
 	var _manager_actions = __webpack_require__(291);
 
+	var _slider_actions = __webpack_require__(335);
+
 	var _constants = __webpack_require__(292);
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -95,7 +97,21 @@ webpackJsonp([0],{
 	  account_mode: _constants.MODE.LOGIN,
 	  language: _constants.LANG.EN,
 	  sections: [],
-	  unique_id: 0
+	  unique_id: 0,
+
+	  initialPointerX: 0,
+	  currentPointerX: 0,
+	  pointerDrag: false,
+	  viewportWidth: document.documentElement.clientWidth,
+	  viewportHeight: document.documentElement.clientHeight,
+	  trackLeft: 0,
+	  slides: [{
+	    color: 'bg-50'
+	  }, {
+	    color: 'bg-60'
+	  }, {
+	    color: 'bg-70'
+	  }]
 	};
 
 	var reducer = function reducer() {
@@ -152,6 +168,26 @@ webpackJsonp([0],{
 	      return Object.assign({}, state, {
 	        unique_id: action.section.id,
 	        sections: [].concat(_toConsumableArray(state.sections), [action.section])
+	      });
+
+	    //slide_actions
+	    case _slider_actions.START_OFFSET_PROCESS:
+	      return Object.assign({}, state, {
+	        pointerDrag: action.pointerDrag,
+	        initialPointerX: action.initialPointerX,
+	        currentPointerX: action.initialPointerX
+	      });
+	    case _slider_actions.END_OFFSET_PROCESS:
+	      return Object.assign({}, state, {
+	        pointerDrag: action.pointerDrag,
+	        initialPointerX: 0,
+	        currentPointerX: 0
+	      });
+	    case _slider_actions.ACTIVE_OFFSET_PROCESS:
+	      return Object.assign({}, state, {
+	        currentPointerX: action.currentPointerX,
+	        initialPointerX: action.currentPointerX,
+	        trackLeft: state.trackLeft - action.difX
 	      });
 	    default:
 	      return state;
@@ -742,53 +778,110 @@ webpackJsonp([0],{
 
 	var _constants = __webpack_require__(292);
 
-	var _section = __webpack_require__(333);
-
-	var _section2 = _interopRequireDefault(_section);
-
-	var _manager_actions = __webpack_require__(291);
+	var _slider_actions = __webpack_require__(335);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = function App(props) {
-	  var onAddSection = props.onAddSection,
-	      unique_id = props.unique_id,
-	      sections = props.sections;
+	  var viewportWidth = props.viewportWidth,
+	      viewportHeight = props.viewportHeight,
+	      trackLeft = props.trackLeft,
+	      slides = props.slides,
+	      initialPointerX = props.initialPointerX,
+	      currentPointerX = props.currentPointerX,
+	      pointerDrag = props.pointerDrag,
+	      onNextSlide = props.onNextSlide,
+	      onStartOffsetProcess = props.onStartOffsetProcess,
+	      onEndOffsetProcess = props.onEndOffsetProcess,
+	      onActiveOffsetProcess = props.onActiveOffsetProcess;
 
+
+	  var slideWidth = calcSlider(viewportWidth),
+	      trackWidth = slideWidth * slides.length;
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'wh-100p-abs bg-50' },
-	    _react2.default.createElement(
-	      'button',
-	      { onClick: onAddSection.bind(undefined, unique_id) },
-	      '+ Add new section'
-	    ),
+	    { id: 'slider' },
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'p-fx flex-col-row-center-wh100p' },
-	      sections.map(function (section) {
-	        return _react2.default.createElement(_section2.default, { key: section.id, section: section });
-	      })
+	      { id: 'viewport', className: 'viewport', style: { width: viewportWidth, height: viewportHeight },
+	        onMouseDown: onStartOffsetProcess.bind(undefined, pointerDrag),
+	        onMouseUp: onEndOffsetProcess,
+	        onMouseMove: onActiveOffsetProcess.bind(undefined, pointerDrag, initialPointerX) },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'track', style: { transform: 'translate3d(' + trackLeft + 'px, 0px, 0px)', width: trackWidth } },
+	        slides.map(function (_slide, index) {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: index, className: 'slide ' + _slide.color, style: { width: slideWidth } },
+	            index
+	          );
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'prev-next-btns', className: 'slide-btns' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'prev-btn', className: 'prev-btn' },
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: onNextSlide.bind(undefined, initialPointerX) },
+	            'Prev'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'next-btn', className: 'next-btn' },
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'Next'
+	          )
+	        )
+	      )
 	    )
 	  );
 	};
 
+	function calcSlider(viewportWidth) {
+	  if (viewportWidth > 992) {
+	    return viewportWidth / 3;
+	  } else if (viewportWidth > 768) {
+	    return viewportWidth / 2;
+	  }
+	  return viewportWidth;
+	}
+
 	var mapStateToProps = function mapStateToProps(state, props) {
 	  return {
-	    position: state.position_container,
-	    unique_id: state.unique_id,
-	    sections: state.sections
+	    viewportWidth: state.viewportWidth,
+	    viewportHeight: state.viewportHeight,
+	    trackLeft: state.trackLeft,
+	    initialPointerX: state.initialPointerX,
+	    currentPointerX: state.currentPointerX,
+	    pointerDrag: state.pointerDrag,
+	    slides: state.slides
 	  };
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
-	    onAddSection: function onAddSection(new_id, event) {
-	      dispatch((0, _manager_actions.addSection)({
-	        position: _constants.POSITION.CENTER,
-	        id: ++new_id
-	      }));
+	    onStartOffsetProcess: function onStartOffsetProcess(pointerDrag, event) {
+	      if (pointerDrag) return;
+	      dispatch((0, _slider_actions.startOffsetProcess)(true, event.clientX));
+	    },
+	    onEndOffsetProcess: function onEndOffsetProcess(event) {
+	      dispatch((0, _slider_actions.endOffsetProcess)(false));
+	    },
+	    onActiveOffsetProcess: function onActiveOffsetProcess(pointerDrag, initialPointerX, event) {
+	      if (pointerDrag) {
+	        dispatch((0, _slider_actions.activeOffsetProcess)(event.clientX, initialPointerX));
+	      }
+	    },
+	    onNextSlide: function onNextSlide(pointerX, pointerDrag, event) {
+	      dispatch((0, _slider_actions.endOffsetProcess)(false));
 	    }
 	  };
 	};
@@ -799,105 +892,44 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 333:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 335:
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.nextSlide = nextSlide;
+	exports.previousSlide = previousSlide;
+	exports.startOffsetProcess = startOffsetProcess;
+	exports.endOffsetProcess = endOffsetProcess;
+	exports.activeOffsetProcess = activeOffsetProcess;
+	var NEXT_SLIDE = exports.NEXT_SLIDE = 'NEXT_SLIDE';
+	var PREVIOUS_SLIDE = exports.PREVIOUS_SLIDE = 'PREVIOUS_SLIDE';
+	var START_OFFSET_PROCESS = exports.START_OFFSET_PROCESS = 'START_OFFSET_PROCESS';
+	var END_OFFSET_PROCESS = exports.END_OFFSET_PROCESS = 'END_OFFSET_PROCESS';
+	var ACTIVE_OFFSET_PROCESS = exports.ACTIVE_OFFSET_PROCESS = 'ACTIVE_OFFSET_PROCESS';
 
-	var _react = __webpack_require__(11);
+	function nextSlide(section, position) {
+	  return { type: NEXT_SLIDE, section: section, position: position };
+	}
+	function previousSlide(section) {
+	  return { type: PREVIOUS_SLIDE, section: section };
+	}
 
-	var _react2 = _interopRequireDefault(_react);
+	function startOffsetProcess(pointerDrag, initialPointerX) {
+	  return { type: START_OFFSET_PROCESS, pointerDrag: pointerDrag, initialPointerX: initialPointerX };
+	}
 
-	var _reactRedux = __webpack_require__(249);
+	function endOffsetProcess(pointerDrag) {
+	  return { type: END_OFFSET_PROCESS, pointerDrag: pointerDrag };
+	}
 
-	var _reactIntl = __webpack_require__(300);
-
-	var _constants = __webpack_require__(292);
-
-	var _manager_actions = __webpack_require__(291);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Section = function Section(props) {
-	  var onChangePositionContainer = props.onChangePositionContainer,
-	      section = props.section,
-	      position = section.position;
-
-
-	  var className = position === _constants.POSITION.CENTER ? "w-350px bg-60" : position === _constants.POSITION.LEFT ? "w-350px bg-60 p-abs-left-top-0" : "w-350px bg-60 p-abs-right-top-0";
-
-	  return _react2.default.createElement(
-	    'div',
-	    { className: className, style: { border: '1px solid blue' } },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'w-100p' },
-	      _react2.default.createElement('input', { type: 'radio',
-	        name: 'position_container_' + section.id,
-	        value: _constants.POSITION.LEFT,
-	        checked: position === _constants.POSITION.LEFT,
-	        onChange: onChangePositionContainer.bind(undefined, section) }),
-	      _react2.default.createElement(
-	        'label',
-	        { className: '' },
-	        'I am left panel'
-	      )
-	    ),
-	    _react2.default.createElement('hr', null),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'w-100p-rel' },
-	      _react2.default.createElement('input', { type: 'radio',
-	        name: 'position_container_' + section.id,
-	        value: _constants.POSITION.CENTER,
-	        checked: position === _constants.POSITION.CENTER,
-	        onChange: onChangePositionContainer.bind(undefined, section) }),
-	      _react2.default.createElement(
-	        'label',
-	        { className: '' },
-	        'I am center container'
-	      )
-	    ),
-	    _react2.default.createElement('hr', null),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'w-100p-rel' },
-	      _react2.default.createElement('input', { type: 'radio',
-	        name: 'position_container_' + section.id,
-	        value: _constants.POSITION.RIGHT,
-	        checked: position === _constants.POSITION.RIGHT,
-	        onChange: onChangePositionContainer.bind(undefined, section) }),
-	      _react2.default.createElement(
-	        'label',
-	        { className: '' },
-	        'I am right panel'
-	      )
-	    )
-	  );
-	};
-
-	var mapStateToProps = function mapStateToProps(state, props) {
-	  return {
-	    unique_id: state.unique_id,
-	    sections: state.sections
-	  };
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    onChangePositionContainer: function onChangePositionContainer(section, event) {
-	      dispatch((0, _manager_actions.changePositionContainer)(section, event.target.value));
-	    }
-	  };
-	};
-
-	var WrappedSection = (0, _reactIntl.injectIntl)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Section));
-
-	exports.default = WrappedSection;
+	function activeOffsetProcess(currentPointerX, initialPointerX) {
+	  var difX = initialPointerX - currentPointerX;
+	  return { type: ACTIVE_OFFSET_PROCESS, currentPointerX: currentPointerX, difX: difX };
+	}
 
 /***/ }
 

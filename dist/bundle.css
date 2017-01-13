@@ -10,8 +10,12 @@
 .flex-wrap {
   flex-wrap: wrap;
 }
-.flex-dir-col {
+.flex-col {
   flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
 .flex-col-center {
   display: flex;
@@ -299,4 +303,30 @@ form.account > div {
   margin-left: 5px;
   top: 6px;
   opacity: 0.5;
+}
+.viewport {
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+}
+.track {
+  position: relative;
+  height: inherit;
+  top: 0;
+  left: 0px;
+  margin: 0;
+  padding: 0;
+}
+.slide {
+  float: left;
+  height: inherit;
+}
+.prev-btn,
+.next-btn {
+  position: absolute;
+  border-radius: 50%;
+  top: calc(50%);
+}
+.next-btn {
+  right: 0;
 }
