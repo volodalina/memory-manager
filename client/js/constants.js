@@ -7,7 +7,8 @@ const MODE = {
     RU: 'RU'
   },
   NODE_ENV = {
-    PRODUCTION: 'production'
+    PRODUCTION: 'production',
+    LOCALHOST: 'localhost',
   },
   POSITION = {
     LEFT: 'LEFT',
