@@ -1,18 +1,18 @@
 const path = require('path'),
   webpack = require('webpack'),
-  json_package = require('./package.json'),
+  json_package = require('../package.json'),
   gitRevSync = require('git-rev-sync'),
-  NODE_ENV = require('./client/js/constants').NODE_ENV,
+  NODE_ENV = require('./js/constants').NODE_ENV,
   isProduction = process.env.NODE_ENV === NODE_ENV.PRODUCTION,
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractPlugin = require('extract-text-webpack-plugin'),
   ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
-  cwd = path.join(__dirname, 'client'),
+  cwd = __dirname,
   out_dir = '',
-  app_bundle_path = `${out_dir}js/mm.app.js`,
-  vendor_bundle_path = `${out_dir}js/mm.vendor.js`,
-  fonts_path = `${out_dir}fonts/[name].[ext]`,
-  css_bundle_path = `${out_dir}css/mm.bundle.css`;
+  app_bundle_path = `/${out_dir}js/mm.app.js`,
+  vendor_bundle_path = `/${out_dir}js/mm.vendor.js`,
+  fonts_path = `/${out_dir}fonts/[name].[ext]`,
+  css_bundle_path = `/${out_dir}css/mm.bundle.css`;
 
 let plugins = [
   new webpack.DefinePlugin({
@@ -33,7 +33,7 @@ let plugins = [
   new ExtractPlugin(isProduction ? `${css_bundle_path}?[chunkhash]` : css_bundle_path),
   new webpack.optimize.CommonsChunkPlugin(
     'vendor',
-    isProduction ? `${vendor_bundle_path}?[chunkhash]` : vendor_bundle_path,
+    `${vendor_bundle_path}${isProduction ? '?[chunkhash]' : ''}`,
     Infinity
   )
 ];
@@ -53,8 +53,8 @@ module.exports = {
   },
   
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: app_bundle_path,
+    path: path.join(cwd, '../dist'),
+    filename: `${app_bundle_path}${isProduction ? '?[chunkhash]' : ''}`,
   },
 
   module: {
