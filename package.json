@@ -35,7 +35,7 @@
     "npm": "3.10.10"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack --config ./client/webpack.config.js",
+    "build": "webpack --config ./client/webpack.config.js",
     "server-dev": "webpack-dev-server --host 0.0.0.0 --port 8080 --config ./client/webpack.config.js"
   }
 }
