@@ -16,7 +16,8 @@ import  {
 import  {
   START_OFFSET_PROCESS,
   END_OFFSET_PROCESS,
-  ACTIVE_OFFSET_PROCESS
+  ACTIVE_OFFSET_PROCESS,
+  RESIZE_SLIDER
 } from "./actions/slider_actions"
 import {MODE, LANG} from './constants'
 
@@ -105,7 +106,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ]
       });
 
-      //slide_actions
+    //slide_actions
     case START_OFFSET_PROCESS:
       return Object.assign({}, state, {
         pointerDrag: action.pointerDrag,
@@ -118,11 +119,17 @@ const reducer = (state = INITIAL_STATE, action) => {
         initialPointerX: 0,
         currentPointerX: 0,
       });
-      case ACTIVE_OFFSET_PROCESS:
+    case ACTIVE_OFFSET_PROCESS:
       return Object.assign({}, state, {
         currentPointerX: action.currentPointerX,
         initialPointerX: action.currentPointerX,
         trackLeft: state.trackLeft - action.difX,
+      });
+    case RESIZE_SLIDER:
+      console.log('resize!!!', state.viewportWidth, document.documentElement.clientWidth, state.viewportHeight, document.documentElement.clientHeight);
+      return Object.assign({}, state, {
+        viewportWidth: document.documentElement.clientWidth,
+        viewportHeight: document.documentElement.clientHeight
       });
     default:
       return state;
