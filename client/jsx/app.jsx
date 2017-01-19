@@ -4,13 +4,15 @@ import {injectIntl} from 'react-intl'
 
 import Slider from './slider'
 
+const viewportSizeSteps = {
+  smallWidth: 768,
+  mediumWidth: 992,
+};
+
 const App = (props) => {
-  let viewportSizeScope = {
-    viewportSmallWidth: 768,
-    viewportMediumWidth: 992
-  };
+
   return <div>
-    <Slider viewportSizeScope={viewportSizeScope}/>
+    <Slider viewportSizeSteps={viewportSizeSteps}/>
   </div>
 };
 

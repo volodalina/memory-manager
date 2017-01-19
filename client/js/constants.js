@@ -14,6 +14,11 @@ const MODE = {
     LEFT: 'LEFT',
     RIGHT: 'RIGHT',
     CENTER: 'CENTER'
+  },
+  VIEWPORT_MODE = {
+    MOBILE: 'MOBILE',
+    TABLET: 'TABLET',
+    DESKTOP: 'DESKTOP'
   };
 
-module.exports = {MODE, LANG, NODE_ENV, POSITION};
+module.exports = {MODE, LANG, NODE_ENV, POSITION, VIEWPORT_MODE};
